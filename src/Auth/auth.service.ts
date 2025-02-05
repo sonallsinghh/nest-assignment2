@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  private readonly API_URL = 'http://localhost:3000/users'; 
+  private readonly API_URL = 'http://localhost:3001/users';
 
   async signUpUser(
     username: string,
@@ -12,10 +12,6 @@ export class AppService {
   ): Promise<string> {
     try {
       const response = await fetch(this.API_URL);
-      
-      if (!response.ok) {
-        return 'Error fetching users!';
-      }
 
       const users = await response.json();
 
@@ -55,13 +51,9 @@ export class AppService {
   ): Promise<string> {
     try {
       const response = await fetch(this.API_URL);
-      
-      if (!response.ok) {
-        return 'Error fetching users!';
-      }
 
       const users = await response.json();
-      
+
       console.log('Fetched users for login:', users);
 
       if (!Array.isArray(users)) {
